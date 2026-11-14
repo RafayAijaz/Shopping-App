@@ -8,6 +8,7 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = context.watch<CartProvider>().cart;
+    
   
     return Scaffold(
       appBar: AppBar(

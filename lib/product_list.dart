@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:ecommerce_app/product_card.dart';
 import 'package:ecommerce_app/product_detail_page.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +13,9 @@ class ProductList extends StatefulWidget {
 }
 
 class _ProductListState extends State<ProductList> {
-  final List<String> filters = const ["All", "Addidas", "Nike", "Bata"];
+  final List<String> filters = const ["All", "Adidas", "Nike", "Bata"];
   late String selectedFilter;
+  String searchQuery = '';
 
   @override
   void initState() {
@@ -26,6 +29,16 @@ class _ProductListState extends State<ProductList> {
       borderRadius: BorderRadius.horizontal(left: Radius.circular(50)),
       borderSide: BorderSide(color: Color.fromRGBO(225, 225, 225, 1)),
     );
+
+    final filteredProducts = products.where((p) {
+      final matchesFilter =
+          selectedFilter == 'All' || p['company'] == selectedFilter;
+      final matchesSearch = p['title'].toString().toLowerCase().contains(
+        searchQuery.toLowerCase(),
+      );
+      return matchesFilter && matchesSearch;
+    }).toList();
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -41,6 +54,11 @@ class _ProductListState extends State<ProductList> {
                 ),
                 Expanded(
                   child: TextField(
+                    onChanged: (value) {
+                      setState(() {
+                        searchQuery = value;
+                      });
+                    },
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(25),
                       prefixIcon: Icon(Icons.search),
@@ -94,10 +112,10 @@ class _ProductListState extends State<ProductList> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: products.length,
+              child: filteredProducts.isEmpty? const Center(child: Text("No Products found"),) : ListView.builder(
+                itemCount: filteredProducts.length,
                 itemBuilder: (context, index) {
-                  final product = products[index];
+                  final product = filteredProducts[index];
                   return InkWell(
                     onTap: () {
                       Navigator.of(context).push(
@@ -109,7 +127,7 @@ class _ProductListState extends State<ProductList> {
                     },
                     child: ProductCard(
                       title: product["title"].toString(),
-                      price: 250,
+                      price: (product['price'] as num).toDouble(),
                       productImg: product["imageUrl"].toString(),
                       backgroundColor: index.isEven
                           ? const Color.fromRGBO(216, 210, 253, 1)
