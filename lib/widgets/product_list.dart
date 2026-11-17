@@ -1,9 +1,7 @@
-import 'dart:ffi';
-
-import 'package:ecommerce_app/product_card.dart';
-import 'package:ecommerce_app/product_detail_page.dart';
+import 'package:ecommerce_app/data/dummy_products.dart';
+import 'package:ecommerce_app/pages/product_detail_page.dart';
+import 'package:ecommerce_app/widgets/product_card.dart';
 import 'package:flutter/material.dart';
-import 'global_variables.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({super.key});
@@ -13,7 +11,12 @@ class ProductList extends StatefulWidget {
 }
 
 class _ProductListState extends State<ProductList> {
-  final List<String> filters = const ["All", "Adidas", "Nike", "Bata"];
+  // Built from the products themselves, so there's a chip for every brand
+  // and never one for a brand with no products. The {...} set removes duplicates.
+  final List<String> filters = [
+    'All',
+    ...{for (final p in products) p.company},
+  ];
   late String selectedFilter;
   String searchQuery = '';
 
@@ -32,8 +35,8 @@ class _ProductListState extends State<ProductList> {
 
     final filteredProducts = products.where((p) {
       final matchesFilter =
-          selectedFilter == 'All' || p['company'] == selectedFilter;
-      final matchesSearch = p['title'].toString().toLowerCase().contains(
+          selectedFilter == 'All' || p.company == selectedFilter;
+      final matchesSearch = p.title.toLowerCase().contains(
         searchQuery.toLowerCase(),
       );
       return matchesFilter && matchesSearch;
@@ -126,9 +129,9 @@ class _ProductListState extends State<ProductList> {
                       );
                     },
                     child: ProductCard(
-                      title: product["title"].toString(),
-                      price: (product['price'] as num).toDouble(),
-                      productImg: product["imageUrl"].toString(),
+                      title: product.title,
+                      price: product.price,
+                      productImg: product.imageUrl,
                       backgroundColor: index.isEven
                           ? const Color.fromRGBO(216, 210, 253, 1)
                           : const Color.fromRGBO(245, 247, 249, 1),

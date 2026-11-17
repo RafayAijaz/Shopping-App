@@ -1,9 +1,10 @@
-import 'package:ecommerce_app/cart_provider.dart';
+import 'package:ecommerce_app/model/product.dart';
+import 'package:ecommerce_app/providers/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetailPage extends StatefulWidget {
-  final Map<String, Object> product;
+  final Product product;
   const ProductDetailPage({required this.product, super.key});
 
   @override
@@ -12,64 +13,73 @@ class ProductDetailPage extends StatefulWidget {
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
   int selectedSize = 0;
+
   void onTap() {
+    final messenger = ScaffoldMessenger.of(context);
+    // Remove any snackbar that's still showing so repeated taps don't queue up.
+    messenger.clearSnackBars();
     if (selectedSize != 0) {
-      context.read<CartProvider>().addProducts({
-        'id': widget.product['id'],
-        'title': widget.product['title'],
-        'price': widget.product['price'],
-        'imageUrl': widget.product['imageUrl'],
-        'company': widget.product['company'],
-        'sizes': selectedSize,
-      });
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Added to cart successfully")));
-    }else{
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please select a size")));
+      context.read<CartProvider>().addProduct(widget.product, selectedSize);
+      messenger.showSnackBar(
+        const SnackBar(content: Text("Added to cart successfully")),
+      );
+    } else {
+      messenger.showSnackBar(
+        const SnackBar(content: Text("Please select a size")),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final product = widget.product;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Details", style: TextTheme.of(context).bodySmall),
         centerTitle: true,
       ),
-      body: SizedBox(
-        width: double.infinity,
+      body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              widget.product["title"].toString(),
-              style: TextTheme.of(context).titleLarge,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                product.title,
+                textAlign: TextAlign.center,
+                style: TextTheme.of(context).titleLarge,
+              ),
             ),
-            Spacer(),
-            Image.asset(widget.product["imageUrl"] as String),
-            Spacer(flex: 2),
+            // The image fills whatever space is left, so on small screens it
+            // shrinks instead of pushing the bottom panel off the screen.
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Image.asset(product.imageUrl, fit: BoxFit.contain),
+              ),
+            ),
             Container(
-              height: 250,
               width: double.infinity,
+              padding: const EdgeInsets.only(top: 20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40),
-                color: Color.fromRGBO(245, 247, 249, 1),
+                color: const Color.fromRGBO(245, 247, 249, 1),
               ),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "\$ ${widget.product["price"]}",
+                    "\$${product.price.toStringAsFixed(2)}",
                     style: TextTheme.of(context).titleLarge,
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   SizedBox(
                     height: 50,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: (widget.product["sizes"] as List<int>).length,
+                      itemCount: product.sizes.length,
                       itemBuilder: (context, index) {
-                        final size =
-                            (widget.product["sizes"] as List<int>)[index];
+                        final size = product.sizes[index];
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
@@ -79,7 +89,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             child: Chip(
                               label: Text(size.toString()),
                               backgroundColor: selectedSize == size
-                                  ? Theme.of(context).primaryColor
+                                  ? Theme.of(context).colorScheme.primary
                                   : null,
                             ),
                           ),
@@ -87,17 +97,19 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       },
                     ),
                   ),
-
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: ElevatedButton.icon(
                       onPressed: onTap,
-                      icon: Icon(Icons.shopping_cart, color: Colors.black),
+                      icon: const Icon(
+                        Icons.shopping_cart,
+                        color: Colors.black,
+                      ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).primaryColor,
+                        backgroundColor: Theme.of(context).colorScheme.primary,
                         minimumSize: const Size(double.infinity, 50),
                       ),
-                      label: Text(
+                      label: const Text(
                         "Add to Cart",
                         style: TextStyle(color: Colors.black, fontSize: 16),
                       ),
