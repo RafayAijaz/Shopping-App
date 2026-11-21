@@ -250,7 +250,7 @@ test/                             # 22 unit + widget tests
 - [x] 22 unit and widget tests
 - [x] App icons and an animated splash screen
 - [x] Web demo deployed to GitHub Pages on every push
-- [ ] Get CI green (`flutter analyze` + `flutter test`)
+- [x] CI green: `flutter analyze` + all 22 tests on every push
 - [ ] Store prices as integer cents (floating-point money needs `closeTo` in tests today)
 - [ ] Load products from a REST API or Firebase (only `ProductRepository` changes)
 - [ ] User accounts, with the cart synced across devices
