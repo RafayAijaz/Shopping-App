@@ -28,7 +28,7 @@ a validated checkout and order history. It's built with Provider, typed models, 
 
 ### [▶ Try the live demo in your browser](https://rafayaijaz.github.io/Shopping-App/)
 
-[Features](#-features) · [Preview](#-preview) · [How it works](#-how-it-works) · [Tech stack](#-tech-stack) · [Getting started](#-getting-started) · [Tests](#-tests) · [Structure](#-project-structure) · [Roadmap](#-roadmap)
+[Features](#-features) · [Preview](#-preview) · [How it works](#-how-it-works) · [Tech stack](#-tech-stack) · [Getting started](#-getting-started) · [Tests](#-tests) · [Structure](#-project-structure)
 
 </div>
 
@@ -242,20 +242,6 @@ assets/
 test/                             # 22 unit + widget tests
 .github/workflows/                # ci.yml, deploy-web.yml
 ```
-
-## 🗺 Roadmap
-
-- [x] Typed models, repository layer, saved state
-- [x] Cart quantities, checkout, orders, favorites, sorting, dark mode
-- [x] 22 unit and widget tests
-- [x] App icons and an animated splash screen
-- [x] Web demo deployed to GitHub Pages on every push
-- [x] CI green: `flutter analyze` + all 22 tests on every push
-- [ ] Store prices as integer cents (floating-point money needs `closeTo` in tests today)
-- [ ] Load products from a REST API or Firebase (only `ProductRepository` changes)
-- [ ] User accounts, with the cart synced across devices
-- [ ] Online card payments through a provider SDK, with keys and order totals checked on a server, never trusted from the app
-- [ ] Product reviews and ratings
 
 ## 📜 Commit history
 
