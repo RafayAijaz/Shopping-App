@@ -8,12 +8,30 @@ import 'test_data.dart';
 Future<void> startApp(WidgetTester tester, {bool failToLoad = false}) async {
   SharedPreferences.setMockInitialValues({});
   await tester.pumpWidget(
-    MyApp(productRepository: FakeProductRepository(shouldFail: failToLoad)),
+    MyApp(
+      productRepository: FakeProductRepository(shouldFail: failToLoad),
+      showSplash: false,
+    ),
   );
   await tester.pumpAndSettle(); // wait for products to load
 }
 
 void main() {
+  testWidgets('splash shows the logo and title, then opens the home page', (
+    tester,
+  ) async {
+    SharedPreferences.setMockInitialValues({});
+    await tester.pumpWidget(MyApp(productRepository: FakeProductRepository()));
+
+    expect(find.byType(Image), findsOneWidget);
+    expect(find.text('SHOEHUB', findRichText: true), findsOneWidget);
+
+    await tester.pump(const Duration(seconds: 3)); // splash timer ends
+    await tester.pumpAndSettle(); // fade to the home page
+
+    expect(find.text('Shoes \nCollection'), findsOneWidget);
+  });
+
   testWidgets('shows an error with a retry button when loading fails', (
     tester,
   ) async {

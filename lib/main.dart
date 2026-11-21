@@ -1,5 +1,6 @@
 import "package:ecommerce_app/data/product_repository.dart";
 import "package:ecommerce_app/pages/home_page.dart";
+import "package:ecommerce_app/pages/splash_page.dart";
 import "package:ecommerce_app/providers/cart_provider.dart";
 import "package:ecommerce_app/providers/favorites_provider.dart";
 import "package:ecommerce_app/providers/orders_provider.dart";
@@ -16,7 +17,9 @@ void main() {
 class MyApp extends StatelessWidget {
   // Tests pass a fake repository here; the real app uses the default one.
   final ProductRepository? productRepository;
-  const MyApp({this.productRepository, super.key});
+  // Tests turn this off to go straight to the home page.
+  final bool showSplash;
+  const MyApp({this.productRepository, this.showSplash = true, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +45,7 @@ class MyApp extends StatelessWidget {
             theme: AppTheme.light(),
             darkTheme: AppTheme.dark(),
             themeMode: themeProvider.themeMode,
-            home: const HomePage(),
+            home: showSplash ? const SplashPage() : const HomePage(),
           );
         },
       ),
