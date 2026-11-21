@@ -1,116 +1,295 @@
 <div align="center">
 
-# 👟 ShoeHub
+<img src="docs/assets/banner.svg" alt="ShoeHub banner" width="100%">
 
-**A shoe shopping app built with Flutter and Provider.**
+<br><br>
 
-Browse shoes, filter by brand, pick your size, and check out. Your cart,
-favorites, orders and theme are saved on the device.
+<img src="android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" alt="ShoeHub app icon" width="96">
 
-[![CI](https://github.com/RafayAijaz/Shopping-App/actions/workflows/ci.yml/badge.svg)](https://github.com/RafayAijaz/Shopping-App/actions/workflows/ci.yml)
-![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter)
-![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart)
-![State management](https://img.shields.io/badge/state-Provider-FECE01)
+# ShoeHub
 
+**Browse shoes, pick your size, and check out. Your cart survives an app restart.**
+
+A complete shoe store in Flutter: search, brand filters, sorting, favorites, a cart with quantities,<br>
+a validated checkout and order history. It's built with Provider, typed models, a repository layer and 21 automated tests.
+
+<br>
+
+![Flutter](https://img.shields.io/badge/Flutter-Material_3-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![Provider](https://img.shields.io/badge/State-Provider-FECE01?style=for-the-badge&logoColor=black)
+![shared_preferences](https://img.shields.io/badge/Storage-shared__preferences-3A3659?style=for-the-badge)
+
+![Platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS%20%7C%20Web%20%7C%20Desktop-26282C?style=flat-square)
+![Tests](https://img.shields.io/badge/tests-21%20unit%20%2B%20widget-4CAF50?style=flat-square)
+[![CI](https://img.shields.io/github/actions/workflow/status/RafayAijaz/Shopping-App/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/RafayAijaz/Shopping-App/actions/workflows/ci.yml)
+![Last commit](https://img.shields.io/github/last-commit/RafayAijaz/Shopping-App?style=flat-square)
+
+<!-- LIVE DEMO: once GitHub Pages is on (Settings → Pages → Source: GitHub Actions) and the deploy workflow is green, uncomment:
 **[▶ Try the live demo](https://rafayaijaz.github.io/Shopping-App/)**
+-->
+
+[Features](#-features) · [Preview](#-preview) · [How it works](#-how-it-works) · [Tech stack](#-tech-stack) · [Getting started](#-getting-started) · [Tests](#-tests) · [Structure](#-project-structure) · [Roadmap](#-roadmap)
 
 </div>
 
+---
+
+## ✨ Features
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 🔎 Find the right pair
+- **Search** by name or brand
+- **Brand filter chips**, built from the catalog itself
+- **Sort** by price (low/high) or name, with a dot when a sort is active
+- **Pull to refresh** the catalog
+
+</td>
+<td width="50%" valign="top">
+
+### 👟 Product page
+- **Size picker** using the sizes each product actually has
+- **Hero** image animation from the list to the details
+- **Favorite** with a heart on every card and on the details page
+- Friendly SnackBar if you forget to pick a size
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 🛒 Cart and checkout
+- **Quantities** with +/−, and a cart **badge** on the tab bar
+- Same product + same size **merges** into one line
+- **Swipe to delete** with **Undo**
+- **Free delivery** from $100, with an "add $X more" hint
+- **Validated checkout form** (name, phone, address, city), Cash on Delivery
+
+</td>
+<td width="50%" valign="top">
+
+### 💾 Built to last
+- Cart, favorites, orders and theme **saved on the device**
+- **Order confirmation** screen and full **order history**
+- **Loading, error + retry, and empty states** on every screen
+- **Light and dark mode**: follows the system or a manual toggle
+- **Responsive grid**: 1 column on phones, 2–3 on tablets and web
+
+</td>
+</tr>
+</table>
+
+## 📱 Preview
+
+<div align="center">
+<img src="docs/assets/preview.svg" alt="ShoeHub UI preview with sample data: home, product details (dark) and cart" width="100%">
+
+<sub>A mockup drawn from the app's real layout and its bundled <code>products.json</code>. Not a screenshot.</sub>
+</div>
+
 <!--
-  SCREENSHOTS: run the app, take screenshots, save them in docs/screenshots/
-  with these names, then delete this comment line and the one after the table.
+  REAL SCREENSHOTS: run the app, save screenshots in docs/screenshots/ with these names,
+  then remove this comment's first and last lines.
 
 | Home | Product | Cart | Checkout | Orders | Dark mode |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | <img src="docs/screenshots/home.png" width="160"> | <img src="docs/screenshots/details.png" width="160"> | <img src="docs/screenshots/cart.png" width="160"> | <img src="docs/screenshots/checkout.png" width="160"> | <img src="docs/screenshots/orders.png" width="160"> | <img src="docs/screenshots/dark.png" width="160"> |
+
+  Or a demo GIF:
+<p align="center"><img src="docs/screenshots/demo.gif" width="300"></p>
 -->
 
-## ✨ Features
+## 🧠 How it works
 
-**Shopping**
-- Product catalog with **search** (by name or brand) and **brand filter chips**
-- **Sorting** by price or name
-- Product page with **size picker** and a **Hero** image animation
-- **Favorites** with a heart on every product
+### Architecture
 
-**Cart & checkout**
-- Cart with **quantities**, live **subtotal**, and a **badge** on the cart tab
-- **Swipe to delete** with **Undo**
-- **Free delivery** over $100, with a "spend $X more" hint
-- **Checkout form with validation** (name, phone, address, city) and payment method
-- **Order confirmation** screen and full **order history**
+```mermaid
+flowchart TD
+    A(["main.dart"]) -->|"MultiProvider"| B["Providers (ChangeNotifier)"]
+    B --> P1["ProductProvider"]
+    B --> P2["CartProvider"]
+    B --> P3["FavoritesProvider"]
+    B --> P4["OrdersProvider"]
+    B --> P5["ThemeProvider"]
+    P1 -->|"fetchProducts()"| R["ProductRepository"]
+    R -->|"rootBundle"| J[("assets/data/products.json")]
+    P2 -->|"save / load JSON"| S[("shared_preferences")]
+    P3 -->|"save / load ids"| S
+    P4 -->|"save / load JSON"| S
+    P5 -->|"save / load mode"| S
+    B -->|"context.watch"| UI["Pages and widgets"]
+    UI -->|"context.read: add, toggle, place order"| B
+```
 
-**Quality**
-- **Saved on the device:** cart, favorites, orders and theme survive an app restart
-- **Loading, error + retry, and empty states** on every screen
-- **Light and dark mode**, following the system setting or a manual toggle
-- **Responsive:** one column on phones, a 2–3 column grid on tablets and web
-- **21 automated tests** (unit and widget) running on every push
+- **Pages and widgets** only show data and react to taps.
+- **Providers** hold the state (products, cart, favorites, orders, theme) and tell the UI when it changes.
+- **`ProductRepository`** is the only class that knows *where* products come from. Today that's a bundled JSON file. Switching to a REST API means changing this one class.
+
+### What happens when you tap "Add to Cart"
+
+```mermaid
+sequenceDiagram
+    actor U as User
+    participant D as ProductDetailPage
+    participant C as CartProvider
+    participant SP as shared_preferences
+    participant H as HomePage (cart badge)
+    U->>D: Pick size 10, tap "Add to Cart"
+    D->>C: addProduct(product, 10)
+    alt Same id and size already in cart
+        C->>C: quantity++
+    else New line
+        C->>C: add CartItem
+    end
+    C-->>H: notifyListeners()
+    H-->>U: Badge count updates
+    C->>SP: setString("cart", json)
+    D-->>U: SnackBar "Added to cart successfully"
+```
+
+### Engineering decisions
+
+| Decision | Why it matters |
+|---|---|
+| **Typed models** (`Product`, `CartItem`, `Order`) with `fromJson` / `toJson` | The app started with `Map<String, dynamic>`. Typed classes turn a wrong key or a bad cast from a runtime crash into a compile error. |
+| **Repository pattern** for products | Tests swap in a `FakeProductRepository` through one constructor parameter, so they run fast without files or a network. |
+| **Compare cart lines by id + size**, not by object | Products are re-created from JSON on every launch, so object equality would break merging after a restart. |
+| **Orders copy their cart items** | Changing the cart after checkout can't change an order that was already placed (there's a test for it). |
+| **`SingleChildScrollView` for the checkout form** instead of `ListView` | A `ListView` doesn't build fields that are off screen, so they were never validated. A widget test caught this. |
+| **`IndexedStack` for the tabs** | Each tab keeps its scroll position and search text when you switch away and back. |
+| **Unique Hero tags per screen** (`home-1`, `favorites-1`) | The same product can be on two tabs at once. Duplicate Hero tags would crash the animation. |
 
 ## 🛠 Tech stack
 
-| | |
+| Layer | Choice |
 |---|---|
-| Framework | Flutter (Material 3) |
+| Framework | [Flutter](https://flutter.dev) (Material 3) with the Lato font |
+| Language | [Dart 3](https://dart.dev) |
 | State management | [provider](https://pub.dev/packages/provider) |
 | Local storage | [shared_preferences](https://pub.dev/packages/shared_preferences) |
-| Testing | flutter_test (unit + widget tests) |
-| CI/CD | GitHub Actions: analyze + test on every push, web demo deployed to GitHub Pages |
-
-## 🏗 Architecture
-
-```mermaid
-flowchart LR
-    UI["Pages & Widgets"] -- "context.watch / read" --> P["Providers<br/>(ChangeNotifier)"]
-    P -- "fetchProducts()" --> R["ProductRepository"]
-    R --> J[("products.json")]
-    P -- "save / load" --> S[("shared_preferences")]
-```
-
-- **Pages and widgets** only display data and react to taps.
-- **Providers** hold the app state (products, cart, favorites, orders, theme) and notify the UI when it changes.
-- **`ProductRepository`** is the only class that knows where products come from. It reads a bundled JSON file today; switching to a real REST API means changing this one class. The UI and providers stay the same.
-- Tests use a `FakeProductRepository`, so they're fast and don't depend on files or the network.
-
-```
-lib/
-├── main.dart                 # providers + MaterialApp
-├── data/
-│   └── product_repository.dart
-├── model/                    # Product, CartItem, Order (+ JSON)
-├── providers/                # Product, Cart, Favorites, Orders, Theme
-├── pages/                    # Home, Details, Cart, Checkout, Success, Orders, Favorites
-├── widgets/                  # ProductList, ProductGrid, ProductCard, CartItemTile, EmptyState
-├── theme/app_theme.dart      # light + dark themes, app colors
-└── utils/date_format.dart
-```
+| Linting | [flutter_lints](https://pub.dev/packages/flutter_lints) |
+| Testing | `flutter_test` (unit + widget) |
+| CI/CD | GitHub Actions: `flutter analyze` + `flutter test` on every push; a web build deployed to GitHub Pages |
 
 ## 🚀 Getting started
+
+**Prerequisites:** the [Flutter SDK](https://docs.flutter.dev/get-started/install) (stable channel, Dart 3.12+), plus an emulator, a device or Chrome.
 
 ```bash
 git clone https://github.com/RafayAijaz/Shopping-App.git
 cd Shopping-App
 flutter pub get
-flutter run
+flutter run            # or: flutter run -d chrome
 ```
 
-Run the tests:
+No API keys or `.env` file are needed. Products come from `assets/data/products.json`.
+
+> [!TIP]
+> If `flutter pub get` complains about the SDK version, run `flutter upgrade`. This project needs Dart 3.12 or newer.
+> To start fresh (empty cart, no orders), clear the app's data or uninstall it. Everything is stored with `shared_preferences`.
+
+## 🧪 Tests
 
 ```bash
 flutter test
 ```
 
-## 💡 What I learned
+| File | What it checks |
+|---|---|
+| `test/cart_provider_test.dart` (8) | Same product + size merges, different sizes stay separate, subtotal × quantity, delivery fee under/over $100, −1 at quantity 1 removes, Undo puts an item back in place, clear, and save/load after a restart |
+| `test/providers_test.dart` (7) | `Product` JSON round-trip, whole-number prices become doubles, new orders go on top, placed orders don't change with the cart, orders and favorites survive a restart |
+| `test/widget_test.dart` (6) | Error state with Retry, the product list, the brand filter, search, the no-results state, and the **full flow**: add to cart → checkout → see the order |
 
-- **Typed models instead of Maps.** The app started with `Map<String, dynamic>` products. Moving to `Product` / `CartItem` classes turned runtime crashes (a wrong key or a bad cast) into compile errors.
-- **Compare by id, not by object.** The cart merges "same product, same size" by comparing ids, so it keeps working when products are re-created from JSON.
-- **Decimal math isn't exact.** `44.52 * 2` isn't exactly `89.04` in floating point, so the tests use `closeTo`. A production app would store prices in cents as integers.
-- **Tests find real bugs.** The widget tests caught a checkout form that skipped validating fields scrolled off screen (a `ListView` doesn't build them), and an empty state that overflowed on short screens.
-- **The repository pattern pays off.** Swapping the real data source for a fake one in tests took one constructor parameter.
+## 📂 Project structure
 
-## 🔮 Future improvements
+```
+lib/
+├── main.dart                     # MultiProvider + MaterialApp (light/dark themes)
+├── data/
+│   └── product_repository.dart   # the only place that knows where products come from
+├── model/
+│   ├── product.dart              # Product + JSON
+│   ├── cart_item.dart            # product, size, quantity
+│   └── order.dart                # items, totals, shipping details, date
+├── providers/
+│   ├── product_provider.dart     # loading / error / products
+│   ├── cart_provider.dart        # quantities, subtotal, delivery fee, saved cart
+│   ├── favorites_provider.dart   # Set of favorite ids, saved
+│   ├── orders_provider.dart      # place order, saved order history
+│   └── theme_provider.dart       # system / light / dark, saved
+├── pages/
+│   ├── home_page.dart            # bottom navigation + cart badge
+│   ├── product_detail_page.dart  # size picker, Hero image, add to cart
+│   ├── favorites_page.dart       # favorite products grid
+│   ├── cart_page.dart            # swipe to delete + Undo, total bar
+│   ├── checkout_page.dart        # validated form, payment method, summary
+│   ├── order_success_page.dart   # confirmation
+│   └── orders_page.dart          # expandable order history
+├── widgets/
+│   ├── product_list.dart         # search, filter chips, sort sheet
+│   ├── product_grid.dart         # responsive 1–3 column grid
+│   ├── product_card.dart         # card with heart button
+│   ├── cart_item_tile.dart       # +/− quantity, confirm on remove
+│   └── empty_state.dart          # reusable empty / error view
+├── theme/app_theme.dart          # colors + Material 3 light/dark themes
+└── utils/date_format.dart        # "21 Nov 2026, 3:05 PM"
+assets/
+├── data/products.json            # the catalog
+├── images/                       # product photos
+└── fonts/                        # Lato
+test/                             # 21 unit + widget tests
+.github/workflows/                # ci.yml, deploy-web.yml
+```
 
-- Load products from a REST API or Firebase
-- User accounts (sign up / log in) with a cart synced across devices
-- Online payments
-- Product reviews and ratings
+## 🗺 Roadmap
+
+- [x] Typed models, repository layer, saved state
+- [x] Cart quantities, checkout, orders, favorites, sorting, dark mode
+- [x] 21 unit and widget tests
+- [ ] Get CI green (`flutter analyze` + `flutter test`) and turn on GitHub Pages for the live demo
+- [ ] Replace the default Flutter web icons in `web/icons/` with the ShoeHub icon
+- [ ] Store prices as integer cents (floating-point money needs `closeTo` in tests today)
+- [ ] Load products from a REST API or Firebase (only `ProductRepository` changes)
+- [ ] User accounts, with the cart synced across devices
+- [ ] Online card payments through a provider SDK, with keys and order totals checked on a server, never trusted from the app
+- [ ] Product reviews and ratings
+
+## 📜 Commit history
+
+Built step by step, one feature per commit:
+
+```
+02ece63  add bottom navigation bar
+b4ee066  add cart provider
+e5ce36f  Add snackbars and cart features
+b30254b  add search feature
+72edee6  Refactor into folders and typed models
+2a6b48d  Add JSON models, product repository and saved state with shared_preferences
+15e5a2b  Add cart quantities, checkout, orders, favorites, sorting and dark mode
+d27132d  Add unit and widget tests
+120880b  Rename app to ShoeHub, add README and GitHub Actions workflows
+1bb90d5  Add ShoeHub app icons for Android and web
+```
+
+## 🙏 Acknowledgements
+
+- [Flutter](https://flutter.dev) and the [provider](https://pub.dev/packages/provider) and [shared_preferences](https://pub.dev/packages/shared_preferences) packages
+- The [Lato](https://fonts.google.com/specimen/Lato) font family
+- Badges by [shields.io](https://shields.io)
+
+---
+
+<div align="center">
+
+### 👨‍💻 Author
+
+**Muhammad Rafay Aijaz**: Flutter developer and cybersecurity student
+
+[![GitHub](https://img.shields.io/badge/GitHub-RafayAijaz-181717?style=for-the-badge&logo=github)](https://github.com/RafayAijaz)
+
+If this project helped you or you liked it, please give it a ⭐
+
+</div>
