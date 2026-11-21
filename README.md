@@ -22,12 +22,11 @@ a validated checkout and order history. It's built with Provider, typed models, 
 
 ![Platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS%20%7C%20Web%20%7C%20Desktop-26282C?style=flat-square)
 ![Tests](https://img.shields.io/badge/tests-22%20unit%20%2B%20widget-4CAF50?style=flat-square)
+[![Live demo](https://img.shields.io/badge/live%20demo-GitHub%20Pages-FECE01?style=flat-square&logo=github)](https://rafayaijaz.github.io/Shopping-App/)
 [![CI](https://img.shields.io/github/actions/workflow/status/RafayAijaz/Shopping-App/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/RafayAijaz/Shopping-App/actions/workflows/ci.yml)
 ![Last commit](https://img.shields.io/github/last-commit/RafayAijaz/Shopping-App?style=flat-square)
 
-<!-- LIVE DEMO: once GitHub Pages is on (Settings → Pages → Source: GitHub Actions) and the deploy workflow is green, uncomment:
-**[▶ Try the live demo](https://rafayaijaz.github.io/Shopping-App/)**
--->
+### [▶ Try the live demo in your browser](https://rafayaijaz.github.io/Shopping-App/)
 
 [Features](#-features) · [Preview](#-preview) · [How it works](#-how-it-works) · [Tech stack](#-tech-stack) · [Getting started](#-getting-started) · [Tests](#-tests) · [Structure](#-project-structure) · [Roadmap](#-roadmap)
 
@@ -74,9 +73,9 @@ a validated checkout and order history. It's built with Provider, typed models, 
 ### 💾 Built to last
 - Cart, favorites, orders and theme **saved on the device**
 - **Order confirmation** screen and full **order history**
-- **Loading, error + retry, and empty states** on every screen
+- **Loading and error + retry** on the catalog, **friendly empty states** for search, favorites, cart and orders
 - **Light and dark mode**: follows the system or a manual toggle
-- **Responsive grid**: 1 column on phones, 2–3 on tablets and web
+- **Responsive grid**: 1 column on phones, up to 3 on wide screens and the web
 - **Animated splash screen**, with matching native launch screens on Android and iOS
 
 </td>
@@ -169,9 +168,11 @@ sequenceDiagram
 | Local storage | [shared_preferences](https://pub.dev/packages/shared_preferences) |
 | Linting | [flutter_lints](https://pub.dev/packages/flutter_lints) |
 | Testing | `flutter_test` (unit + widget) |
-| CI/CD | GitHub Actions: `flutter analyze` + `flutter test` on every push; a web build deployed to GitHub Pages |
+| CI/CD | GitHub Actions: `flutter analyze` + `flutter test` on every push; the web build is deployed to [GitHub Pages](https://rafayaijaz.github.io/Shopping-App/) |
 
 ## 🚀 Getting started
+
+**Just want to look?** Open the [live demo](https://rafayaijaz.github.io/Shopping-App/), no install needed.
 
 **Prerequisites:** the [Flutter SDK](https://docs.flutter.dev/get-started/install) (stable channel, Dart 3.12+), plus an emulator, a device or Chrome.
 
@@ -248,7 +249,8 @@ test/                             # 22 unit + widget tests
 - [x] Cart quantities, checkout, orders, favorites, sorting, dark mode
 - [x] 22 unit and widget tests
 - [x] App icons and an animated splash screen
-- [ ] Get CI green (`flutter analyze` + `flutter test`) and turn on GitHub Pages for the live demo
+- [x] Web demo deployed to GitHub Pages on every push
+- [ ] Get CI green (`flutter analyze` + `flutter test`)
 - [ ] Store prices as integer cents (floating-point money needs `closeTo` in tests today)
 - [ ] Load products from a REST API or Firebase (only `ProductRepository` changes)
 - [ ] User accounts, with the cart synced across devices
