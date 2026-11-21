@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-label="ShoeHub — a shoe shopping app built with Flutter">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#18191C"/>
+      <stop offset="0.55" stop-color="#26282C"/>
+      <stop offset="1" stop-color="#3A3659"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FECE01"/>
+      <stop offset="1" stop-color="#E8B04B"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FECE01" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#FECE01" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+      .up{opacity:0;animation:up .9s ease-out forwards}
+      .d1{animation-delay:.1s}.d2{animation-delay:.3s}.d3{animation-delay:.5s}.d4{animation-delay:.7s}.d5{animation-delay:.9s}
+      @keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+      .spin{transform-origin:930px 210px;animation:spin 40s linear infinite}
+      @keyframes spin{to{transform:rotate(360deg)}}
+      .drift{animation:drift 6s ease-in-out infinite}
+      @keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+      .tw{animation:tw 3s ease-in-out infinite}
+      .tw2{animation-delay:1s}.tw3{animation-delay:2s}
+      @keyframes tw{0%,100%{opacity:.15}50%{opacity:.9}}
+    </style>
+  </defs>
+  <rect width="1200" height="420" rx="24" fill="url(#bg)"/>
+  <!-- sparkles -->
+  <g fill="#FECE01">
+    <circle class="tw" cx="640" cy="60" r="2.5"/>
+    <circle class="tw tw2" cx="1130" cy="90" r="2"/>
+    <circle class="tw tw3" cx="760" cy="370" r="2.5"/>
+    <circle class="tw tw2" cx="1080" cy="360" r="2"/>
+    <circle class="tw" cx="560" cy="350" r="1.8"/>
+    <circle class="tw tw3" cx="1160" cy="230" r="1.8"/>
+  </g>
+  <!-- right visual -->
+  <circle cx="930" cy="210" r="190" fill="url(#glow)"/>
+  <g class="spin" fill="none" stroke="#FECE01" stroke-opacity="0.35">
+    <circle cx="930" cy="210" r="150" stroke-dasharray="4 14" stroke-width="2"/>
+    <circle cx="930" cy="210" r="115" stroke-dasharray="40 20" stroke-width="1.5" stroke-opacity="0.2"/>
+  </g>
+  <g class="drift">
+    <!-- stylised sneaker -->
+    <g transform="translate(800 150)">
+      <path d="M10 95 C 8 70, 30 62, 52 60 L 92 22 C 100 14, 112 14, 118 22 L 150 58 C 175 70, 215 72, 240 82 C 258 89, 262 100, 258 112 L 12 112 C 6 112, 6 100, 10 95 Z" fill="url(#gold)"/>
+      <path d="M8 112 L 260 112 C 262 122, 256 128, 246 128 L 18 128 C 8 128, 4 120, 8 112 Z" fill="#F5F7F9"/>
+      <g stroke="#18191C" stroke-width="4" stroke-linecap="round">
+        <line x1="98" y1="36" x2="118" y2="50"/>
+        <line x1="90" y1="46" x2="112" y2="62"/>
+        <line x1="82" y1="56" x2="104" y2="74"/>
+      </g>
+      <path d="M150 58 C 165 80, 200 90, 240 92" fill="none" stroke="#18191C" stroke-opacity="0.35" stroke-width="3"/>
+    </g>
+    <!-- price tag -->
+    <g transform="translate(1010 92)">
+      <rect width="104" height="40" rx="20" fill="#D8D2FD"/>
+      <text x="52" y="27" text-anchor="middle" font-size="18" font-weight="800" fill="#18191C">$44.52</text>
+    </g>
+    <g transform="translate(790 300)">
+      <rect width="120" height="40" rx="20" fill="#26282C" stroke="#FECE01" stroke-opacity="0.6"/>
+      <text x="60" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#FECE01">🛍 Cart · 2</text>
+    </g>
+  </g>
+  <!-- left text -->
+  <g>
+    <text class="up d1" x="64" y="118" font-size="72" font-weight="900" fill="#FFFFFF">Shoe<tspan fill="url(#gold)">Hub</tspan></text>
+    <text class="up d2" x="66" y="162" font-size="24" font-weight="600" fill="#E9E7F5">Browse, pick your size, check out. 👟</text>
+    <text class="up d3" x="66" y="198" font-size="16" font-weight="600" fill="#A9A6C4" letter-spacing="1.5">FLUTTER · DART · PROVIDER · SHARED_PREFERENCES · MATERIAL 3</text>
+    <g class="up d4" font-size="16" font-weight="700">
+      <rect x="64" y="226" width="178" height="38" rx="19" fill="#FECE01"/>
+      <text x="153" y="251" text-anchor="middle" fill="#18191C">🔎 Search &amp; filter</text>
+      <rect x="254" y="226" width="186" height="38" rx="19" fill="#D8D2FD"/>
+      <text x="347" y="251" text-anchor="middle" fill="#18191C">🛒 Cart &amp; checkout</text>
+      <rect x="64" y="276" width="168" height="38" rx="19" fill="#3A3659" stroke="#D8D2FD" stroke-opacity="0.5"/>
+      <text x="148" y="301" text-anchor="middle" fill="#FFFFFF">💾 Saved offline</text>
+      <rect x="244" y="276" width="196" height="38" rx="19" fill="#3A3659" stroke="#D8D2FD" stroke-opacity="0.5"/>
+      <text x="342" y="301" text-anchor="middle" fill="#FFFFFF">🌙 Light &amp; dark</text>
+    </g>
+    <text class="up d5" x="66" y="360" font-size="15" font-weight="600" fill="#8E8BA8">Android · iOS · Web · Windows · macOS · Linux   |   21 tests · CI on every push</text>
+  </g>
+</svg>

@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="760" viewBox="0 0 1100 760" role="img" aria-label="ShoeHub UI preview with sample data">
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}</style>
+<rect width="1100" height="760" rx="24" fill="#EFEDF8"/>
+<text x="550.0" y="36" text-anchor="middle" font-size="15" font-weight="700" fill="#6B6880">UI preview with sample data · mockup drawn from the app's layout and products.json</text>
+<g transform="translate(40 60)">
+<rect x="-10" y="-10" width="320" height="640" rx="44" fill="#E6E6EA"/>
+<clipPath id="c40"><rect width="300" height="620" rx="36"/></clipPath>
+<g clip-path="url(#c40)"><rect width="300" height="620" fill="#FFFFFF"/>
+<text x="22" y="26" font-size="12" font-weight="700" fill="#111111">9:41</text>
+<rect x="110.0" y="12" width="80" height="20" rx="10" fill="#000"/>
+<text x="20" y="74" font-size="28" font-weight="800" fill="#111111">Shoes</text>
+<text x="20" y="106" font-size="28" font-weight="800" fill="#111111">Collection</text>
+<text x="268" y="78" text-anchor="middle" font-size="18" fill="#111111">☾</text>
+<text x="24" y="150" font-size="18" fill="#777777">⚙</text>
+<path d="M70 126 H300 V166 H70 A20 20 0 0 1 70 126 Z" fill="none" stroke="#E1E1E1"/>
+<text x="64" y="151" font-size="13" fill="#777777">🔍</text><text x="86" y="151" font-size="14" font-weight="700" fill="#777777">Search</text>
+<rect x="14" y="180" width="57" height="32" rx="16" fill="#FECE01"/>
+<text x="42.5" y="201" text-anchor="middle" font-size="14" fill="#000">All</text>
+<rect x="79" y="180" width="66" height="32" rx="16" fill="#F5F7F9"/>
+<text x="112.0" y="201" text-anchor="middle" font-size="14" fill="#111111">Nike</text>
+<rect x="153" y="180" width="66" height="32" rx="16" fill="#F5F7F9"/>
+<text x="186.0" y="201" text-anchor="middle" font-size="14" fill="#111111">Bata</text>
+<rect x="227" y="180" width="93" height="32" rx="16" fill="#F5F7F9"/>
+<text x="273.5" y="201" text-anchor="middle" font-size="14" fill="#111111">Service</text>
+<rect x="16" y="226" width="268" height="166" rx="18" fill="#D8D2FD"/>
+<text x="32" y="254" font-size="16" font-weight="900" fill="#111111">Men&#39;s Nike Shoes</text>
+<text x="32" y="274" font-size="13" fill="#111111">$44.52</text>
+<text x="262" y="256" text-anchor="middle" font-size="20" fill="#E53935">♥</text>
+<image href="data:image/webp;base64,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" x="60" y="280" width="180" height="104" preserveAspectRatio="xMidYMid meet"/>
+<rect x="16" y="404" width="268" height="166" rx="18" fill="#F5F7F9"/>
+<text x="32" y="432" font-size="16" font-weight="900" fill="#111111">Bata Women&#39;s Shoes</text>
+<text x="32" y="452" font-size="13" fill="#111111">$28.95</text>
+<text x="262" y="434" text-anchor="middle" font-size="20" fill="#111111">♡</text>
+<image href="data:image/webp;base64,UklGRogGAABXRUJQVlA4WAoAAAAQAAAAlQAAXwAAQUxQSEkDAAABkEXbliFJ0bZt99i2bdu2bdu2bdu2bduF9h1URkZmRsbfrBURE0D+G20tJpUu78wjIFWNgGGInWhk+YR/d4SKhd8NWH5cSCRst0H6e12BGAjapN7CEGegAmba6YOdvWITIHdTvJ8V56zKTDpw6+6paTkVCf8sC4aPR3LybRIsm0ZbKzAZTD8X59kAUPZi5/maDR658yvKQGPIyKwoWNfhVydQL2NWldnPA5My8MnqKJ0xHasBzAC8SseljCY6rGDU06wEbvjwaABkJuZjEbgSCl/snp471mfl4FqQvGoPofyv8S6cyWiWhUvZZORbnwZVnormS38w/DE3h41ESJP9iVDrTX+e2FxkASRdXTq4eaNes099hZpXWnEknZmNVvfWibXiRX/w1XC8JB/srnAGMDbmQrpE7sBYgwc9wWHzyjbZNLecRwAS10ZpbCengNftA7QU9p1bwJueDtqpD66fDNXMBL5hgmb2ce7XtEhtuD7jHPBxaS0/DcQncA/A2+WlbNVWETp5vKSrurrqBfB4U/digbaqmaEf/365sXZw3TzhblaKFXipLxbTfj6/sGnpssXd49hl+AI9/3lmfF5GC6D3ycsDWHi90T3gWpQ8qwUQwdNOsoqmCQHqyRoAMXyeX854QcBdZ7ryH0UhNQdV+s8QxiY0DscgjhNoekMgt1K4vRSJvRRZE0Vig5TjDojkGKmaEMrqUmOE4o2P1CahGE2k94rEy0CKtQKRUpVQDhUHU2tCmy9VFF5VJNR2Z8QgaX00kVlNCLbmI7JtNgvAOgfCMOiGNp5vHtqmdf85h95w4Ocge8I04poGTtf2IJZ9yi/8rK20HTkI68Adarvb2I5Qh3X/pZ2knSWJgjbtn6qqnzuRXf69Rt7Oz0cU9m1/7IdakkYSlpWTNfD1QMsAosaIcn1OvDJKPaB5TJH66eLkvIRtkw9KJb+j+rX08Opm4UTFHtEFqrToO2bO3C7uw8/du//v3VFes8+c2rFuzogOVXL4WxHmkaNuJ//zk9GXdv79Dlky3N1Sg2jawaI9Ua1jthazd7XJ+1xqx0GK61GEENJqx9bpnctHOxBd9itUo02fybM2zHT1WXPy5MmTJ7asGhJN/iMPAFZQOCAYAwAA8BoAnQEqlgBgAD7BUqNKp6SjIa1UfQDwGAlnAM+JcfkXwzJ9K4tjh+6nDGjU+RK4LxyD/5syBYRKaPriykK3zO+L0E/x0bgmbvKm//+J8I4mRgSWDnQp8TKhLw9q21BC/ZqmBBGc0N8BdBxZmRWWGLnxJHWRY6JSbiHHIvnJPvQXYDCznri40E3oaOi1mG8+ppzJ7HEyrErBuPRYDtjFOOLXhQXibfZx8iF6qYbSde6mgwytFhAJ2Wvzc/U8iUHXf1xMZjKKGNDmgOGb5aUhnQHqpsCB9YsE/Y7zq7XRTEAA/vkzoEN/zNBLr9gf1lIlxyS/WAaP93G+gmq1zWgVEZ2i74uypzsLKeZddb818j2t8Bpg99IWAiStqns/HPhY0z9RyssKzji63EQNyUehfoQvtdilvnMn/RAzqpDWybyQvuh+Sin6IwzVBG4OK8nebUTzIAUP+q6GgSA0wOBptpfRqzx+0DoCuNZS3CVt5j3oNWutfkyWQrpcqsvbAqGlvbesquMPYoEl2eb+wa7ZnRxQ+1/WNeh6MCCBhjHqU/vQbkQRI4ZK1FZl0s94yhma8u0x+BYPw8OdWIY0RzJBvpy+/kAq0cy//ex4IKPwknOVPSIj4ppc/z0pOX6WUFgfE/0W8b9FDhCYJpDLJfOP5DLnGNQXF7ZPErmeU7YHeJ8zWFSH5lnDu1I22Wg0Ju6tlsdC6D7hvglb3nNEZmsq4VR61iR/8yqB2iXDckKhmckLtF7lylUwUNXWE3QkSaIIDABcoazrXpxTUou5NXUnBge46C1Mk6n8OlQa0p+Jyf7nqAETI7QZC8LvDcyX2JPBNBnGyxLntcGqVAyiSGrSJjng1GpAD8buaY9YLDpTzn13t0mqy+KEQHKO5t0zVnsCh9x1Q/hqPFheu3y7XeBga8YwcGQDilfcl8hZGDwNzJun/7zYf//RvJYHv8ONak1a//iktM3bUdfCNmd0KzppPMcdCkkGZYPv/xrfQ3atpL4WUJe6uQiK1I1G1M1iuP0jyNWMHqN2gyXToVNH6sINqMf6yjgAAAAA" x="60" y="458" width="180" height="104" preserveAspectRatio="xMidYMid meet"/>
+<rect y="556" width="300" height="64" fill="#FFFFFF"/><line x1="0" x2="300" y1="556" y2="556" stroke="#F5F7F9"/>
+<text x="37.5" y="586" text-anchor="middle" font-size="20" fill="#FECE01">⌂</text>
+<text x="37.5" y="606" text-anchor="middle" font-size="10" font-weight="700" fill="#FECE01">Home</text>
+<text x="112.5" y="586" text-anchor="middle" font-size="20" fill="#555555">♥</text>
+<text x="112.5" y="606" text-anchor="middle" font-size="10" font-weight="700" fill="#555555">Favorites</text>
+<text x="187.5" y="586" text-anchor="middle" font-size="20" fill="#555555">🛍</text>
+<text x="187.5" y="606" text-anchor="middle" font-size="10" font-weight="700" fill="#555555">Cart</text>
+<circle cx="200.5" cy="570" r="8" fill="#D32F2F"/><text x="200.5" y="574" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">3</text>
+<text x="262.5" y="586" text-anchor="middle" font-size="20" fill="#555555">▤</text>
+<text x="262.5" y="606" text-anchor="middle" font-size="10" font-weight="700" fill="#555555">Orders</text>
+</g>
+<text x="150.0" y="664" text-anchor="middle" font-size="14" font-weight="700" fill="#8A8799">Home · light</text></g>
+<g transform="translate(400 60)">
+<rect x="-10" y="-10" width="320" height="640" rx="44" fill="#3A3B40"/>
+<clipPath id="c400"><rect width="300" height="620" rx="36"/></clipPath>
+<g clip-path="url(#c400)"><rect width="300" height="620" fill="#18191C"/>
+<text x="22" y="26" font-size="12" font-weight="700" fill="#FFFFFF">9:41</text>
+<rect x="110.0" y="12" width="80" height="20" rx="10" fill="#000"/>
+<text x="20" y="66" font-size="18" fill="#FFFFFF">←</text>
+<text x="150" y="66" text-anchor="middle" font-size="16" font-weight="900" fill="#FFFFFF">Details</text>
+<text x="276" y="68" text-anchor="middle" font-size="20" fill="#E53935">♥</text>
+<text x="150" y="112" text-anchor="middle" font-size="24" font-weight="800" fill="#FFFFFF">Men&#39;s Nike Shoes</text>
+<text x="150" y="136" text-anchor="middle" font-size="14" fill="#9A9AA0">Nike</text>
+<image href="data:image/webp;base64,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" x="10" y="160" width="280" height="220" preserveAspectRatio="xMidYMid meet"/>
+<rect x="0" y="400" width="300" height="240" rx="34" fill="#26282C"/>
+<text x="150" y="450" text-anchor="middle" font-size="28" font-weight="800" fill="#FFFFFF">$44.52</text>
+<rect x="39.0" y="470" width="48" height="34" rx="10" fill="#18191C" stroke="#3A3B40"/>
+<text x="63.0" y="492" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">9</text>
+<rect x="97.0" y="470" width="48" height="34" rx="10" fill="#FECE01" stroke="#3A3B40"/>
+<text x="121.0" y="492" text-anchor="middle" font-size="14" font-weight="700" fill="#000">10</text>
+<rect x="155.0" y="470" width="48" height="34" rx="10" fill="#18191C" stroke="#3A3B40"/>
+<text x="179.0" y="492" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">11</text>
+<rect x="213.0" y="470" width="48" height="34" rx="10" fill="#18191C" stroke="#3A3B40"/>
+<text x="237.0" y="492" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">12</text>
+<rect x="20" y="524" width="260" height="50" rx="15" fill="#FECE01"/>
+<text x="150" y="554" text-anchor="middle" font-size="15" font-weight="800" fill="#000">🛒 Add to Cart</text>
+</g>
+<text x="150.0" y="664" text-anchor="middle" font-size="14" font-weight="700" fill="#8A8799">Product details · dark</text></g>
+<g transform="translate(760 60)">
+<rect x="-10" y="-10" width="320" height="640" rx="44" fill="#E6E6EA"/>
+<clipPath id="c760"><rect width="300" height="620" rx="36"/></clipPath>
+<g clip-path="url(#c760)"><rect width="300" height="620" fill="#FFFFFF"/>
+<text x="22" y="26" font-size="12" font-weight="700" fill="#111111">9:41</text>
+<rect x="110.0" y="12" width="80" height="20" rx="10" fill="#000"/>
+<text x="150" y="66" text-anchor="middle" font-size="16" font-weight="900" fill="#111111">Cart Details</text>
+<rect x="14" y="88" width="272" height="84" rx="18" fill="#F5F7F9"/>
+<rect x="24" y="96" width="68" height="68" rx="14" fill="#FFFFFF"/>
+<image href="data:image/webp;base64,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" x="28" y="100" width="60" height="60" preserveAspectRatio="xMidYMid meet"/>
+<text x="102" y="116" font-size="14" font-weight="700" fill="#111111">Men&#39;s Nike Sh…</text>
+<text x="102" y="136" font-size="12" fill="#777777">Size: 10</text>
+<text x="102" y="156" font-size="13" font-weight="900" fill="#111111">$89.04</text>
+<text x="222" y="136" text-anchor="middle" font-size="18" fill="#111111">⊖</text>
+<text x="246" y="136" text-anchor="middle" font-size="16" font-weight="900" fill="#111111">2</text>
+<text x="270" y="136" text-anchor="middle" font-size="18" fill="#111111">⊕</text>
+<rect x="14" y="184" width="272" height="84" rx="18" fill="#F5F7F9"/>
+<rect x="24" y="192" width="68" height="68" rx="14" fill="#FFFFFF"/>
+<image href="data:image/webp;base64,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" x="28" y="196" width="60" height="60" preserveAspectRatio="xMidYMid meet"/>
+<text x="102" y="212" font-size="14" font-weight="700" fill="#111111">Bata Women&#39;s …</text>
+<text x="102" y="232" font-size="12" fill="#777777">Size: 9</text>
+<text x="102" y="252" font-size="13" font-weight="900" fill="#111111">$28.95</text>
+<text x="222" y="232" text-anchor="middle" font-size="18" fill="#111111">⊖</text>
+<text x="246" y="232" text-anchor="middle" font-size="16" font-weight="900" fill="#111111">1</text>
+<text x="270" y="232" text-anchor="middle" font-size="18" fill="#111111">⊕</text>
+<rect x="0" y="420" width="300" height="160" rx="30" fill="#F5F7F9"/>
+<text x="22" y="472" font-size="12" fill="#9E9E9E">Total (3 items)</text>
+<text x="22" y="504" font-size="26" font-weight="800" fill="#111111">$117.99</text>
+<rect x="170" y="472" width="112" height="44" rx="15" fill="#FECE01"/><text x="226" y="499" text-anchor="middle" font-size="15" font-weight="800" fill="#000">Checkout</text>
+<rect y="556" width="300" height="64" fill="#FFFFFF"/><line x1="0" x2="300" y1="556" y2="556" stroke="#F5F7F9"/>
+<text x="37.5" y="586" text-anchor="middle" font-size="20" fill="#555555">⌂</text>
+<text x="37.5" y="606" text-anchor="middle" font-size="10" font-weight="700" fill="#555555">Home</text>
+<text x="112.5" y="586" text-anchor="middle" font-size="20" fill="#555555">♥</text>
+<text x="112.5" y="606" text-anchor="middle" font-size="10" font-weight="700" fill="#555555">Favorites</text>
+<text x="187.5" y="586" text-anchor="middle" font-size="20" fill="#FECE01">🛍</text>
+<text x="187.5" y="606" text-anchor="middle" font-size="10" font-weight="700" fill="#FECE01">Cart</text>
+<circle cx="200.5" cy="570" r="8" fill="#D32F2F"/><text x="200.5" y="574" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">3</text>
+<text x="262.5" y="586" text-anchor="middle" font-size="20" fill="#555555">▤</text>
+<text x="262.5" y="606" text-anchor="middle" font-size="10" font-weight="700" fill="#555555">Orders</text>
+</g>
+<text x="150.0" y="664" text-anchor="middle" font-size="14" font-weight="700" fill="#8A8799">Cart · light</text></g>
+</svg>
