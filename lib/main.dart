@@ -1,47 +1,50 @@
+import "package:ecommerce_app/data/product_repository.dart";
 import "package:ecommerce_app/pages/home_page.dart";
 import "package:ecommerce_app/providers/cart_provider.dart";
+import "package:ecommerce_app/providers/favorites_provider.dart";
+import "package:ecommerce_app/providers/orders_provider.dart";
+import "package:ecommerce_app/providers/product_provider.dart";
+import "package:ecommerce_app/providers/theme_provider.dart";
+import "package:ecommerce_app/theme/app_theme.dart";
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
-  
+
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // Tests pass a fake repository here; the real app uses the default one.
+  final ProductRepository? productRepository;
+  const MyApp({this.productRepository, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => CartProvider(),
-      child: MaterialApp(
-        title: "Shopping App",
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: 'Lato',
-          inputDecorationTheme: InputDecorationTheme(
-            prefixIconColor: Color.fromRGBO(119, 119, 119, 1),
-            hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Color.fromRGBO(254, 206, 1, 1),
-            primary: Color.fromRGBO(254, 206, 1, 1),
-          ),
-          textTheme: TextTheme(
-            titleLarge: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 35,
-              fontFamily: "Lato",
-            ),
-            titleMedium: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
-            bodySmall: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
-          appBarTheme: AppBarTheme(
-            titleTextStyle: TextStyle(fontSize: 20, color: Colors.black),
-          ),
-          useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        // ".." calls fetchProducts()/load() and still returns the provider.
+        ChangeNotifierProvider(
+          create: (context) =>
+              ProductProvider(repository: productRepository)..fetchProducts(),
         ),
-        home: HomePage(),
+        ChangeNotifierProvider(create: (context) => CartProvider()..load()),
+        ChangeNotifierProvider(create: (context) => OrdersProvider()..load()),
+        ChangeNotifierProvider(
+          create: (context) => FavoritesProvider()..load(),
+        ),
+        ChangeNotifierProvider(create: (context) => ThemeProvider()..load()),
+      ],
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, child) {
+          return MaterialApp(
+            title: "ShoeHub",
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.light(),
+            darkTheme: AppTheme.dark(),
+            themeMode: themeProvider.themeMode,
+            home: const HomePage(),
+          );
+        },
       ),
     );
   }

@@ -1,11 +1,18 @@
 import 'package:ecommerce_app/model/product.dart';
 import 'package:ecommerce_app/providers/cart_provider.dart';
+import 'package:ecommerce_app/providers/favorites_provider.dart';
+import 'package:ecommerce_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final Product product;
-  const ProductDetailPage({required this.product, super.key});
+  final String heroTag;
+  const ProductDetailPage({
+    required this.product,
+    required this.heroTag,
+    super.key,
+  });
 
   @override
   State<ProductDetailPage> createState() => _ProductDetailPageState();
@@ -21,11 +28,17 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     if (selectedSize != 0) {
       context.read<CartProvider>().addProduct(widget.product, selectedSize);
       messenger.showSnackBar(
-        const SnackBar(content: Text("Added to cart successfully")),
+        const SnackBar(
+          content: Text("Added to cart successfully"),
+          duration: Duration(seconds: 2),
+        ),
       );
     } else {
       messenger.showSnackBar(
-        const SnackBar(content: Text("Please select a size")),
+        const SnackBar(
+          content: Text("Please select a size"),
+          duration: Duration(seconds: 2),
+        ),
       );
     }
   }
@@ -33,11 +46,25 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   @override
   Widget build(BuildContext context) {
     final product = widget.product;
+    final isFavorite = context.watch<FavoritesProvider>().isFavorite(
+      product.id,
+    );
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Details", style: TextTheme.of(context).bodySmall),
-        centerTitle: true,
+        title: const Text("Details"),
+        actions: [
+          IconButton(
+            tooltip: isFavorite ? "Remove from favorites" : "Add to favorites",
+            onPressed: () {
+              context.read<FavoritesProvider>().toggle(product.id);
+            },
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: isFavorite ? Colors.red : null,
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Column(
@@ -50,12 +77,19 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 style: TextTheme.of(context).titleLarge,
               ),
             ),
+            Text(
+              product.company,
+              style: const TextStyle(color: Colors.grey, fontSize: 16),
+            ),
             // The image fills whatever space is left, so on small screens it
             // shrinks instead of pushing the bottom panel off the screen.
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(20),
-                child: Image.asset(product.imageUrl, fit: BoxFit.contain),
+                child: Hero(
+                  tag: widget.heroTag,
+                  child: Image.asset(product.imageUrl, fit: BoxFit.contain),
+                ),
               ),
             ),
             Container(
@@ -63,7 +97,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               padding: const EdgeInsets.only(top: 20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40),
-                color: const Color.fromRGBO(245, 247, 249, 1),
+                color: AppColors.panel(context),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -77,21 +111,27 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     height: 50,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
                       itemCount: product.sizes.length,
                       itemBuilder: (context, index) {
                         final size = product.sizes[index];
+                        final isSelected = selectedSize == size;
+
                         return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: GestureDetector(
-                            onTap: () => setState(() {
-                              selectedSize = size;
-                            }),
-                            child: Chip(
-                              label: Text(size.toString()),
-                              backgroundColor: selectedSize == size
-                                  ? Theme.of(context).colorScheme.primary
-                                  : null,
+                          padding: const EdgeInsets.symmetric(horizontal: 6),
+                          child: ChoiceChip(
+                            label: Text(size.toString()),
+                            selected: isSelected,
+                            selectedColor: AppColors.yellow,
+                            checkmarkColor: Colors.black,
+                            labelStyle: TextStyle(
+                              color: isSelected ? Colors.black : null,
                             ),
+                            onSelected: (_) {
+                              setState(() {
+                                selectedSize = size;
+                              });
+                            },
                           ),
                         );
                       },
@@ -101,18 +141,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     padding: const EdgeInsets.all(20.0),
                     child: ElevatedButton.icon(
                       onPressed: onTap,
-                      icon: const Icon(
-                        Icons.shopping_cart,
-                        color: Colors.black,
-                      ),
+                      icon: const Icon(Icons.shopping_cart),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.primary,
                         minimumSize: const Size(double.infinity, 50),
                       ),
-                      label: const Text(
-                        "Add to Cart",
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
+                      label: const Text("Add to Cart"),
                     ),
                   ),
                 ],
