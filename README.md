@@ -11,7 +11,7 @@
 **Browse shoes, pick your size, and check out. Your cart survives an app restart.**
 
 A complete shoe store in Flutter: search, brand filters, sorting, favorites, a cart with quantities,<br>
-a validated checkout and order history. It's built with Provider, typed models, a repository layer and 21 automated tests.
+a validated checkout and order history. It's built with Provider, typed models, a repository layer and 22 automated tests.
 
 <br>
 
@@ -21,7 +21,7 @@ a validated checkout and order history. It's built with Provider, typed models, 
 ![shared_preferences](https://img.shields.io/badge/Storage-shared__preferences-3A3659?style=for-the-badge)
 
 ![Platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS%20%7C%20Web%20%7C%20Desktop-26282C?style=flat-square)
-![Tests](https://img.shields.io/badge/tests-21%20unit%20%2B%20widget-4CAF50?style=flat-square)
+![Tests](https://img.shields.io/badge/tests-22%20unit%20%2B%20widget-4CAF50?style=flat-square)
 [![CI](https://img.shields.io/github/actions/workflow/status/RafayAijaz/Shopping-App/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/RafayAijaz/Shopping-App/actions/workflows/ci.yml)
 ![Last commit](https://img.shields.io/github/last-commit/RafayAijaz/Shopping-App?style=flat-square)
 
@@ -77,6 +77,7 @@ a validated checkout and order history. It's built with Provider, typed models, 
 - **Loading, error + retry, and empty states** on every screen
 - **Light and dark mode**: follows the system or a manual toggle
 - **Responsive grid**: 1 column on phones, 2–3 on tablets and web
+- **Animated splash screen**, with matching native launch screens on Android and iOS
 
 </td>
 </tr>
@@ -85,21 +86,17 @@ a validated checkout and order history. It's built with Provider, typed models, 
 ## 📱 Preview
 
 <div align="center">
-<img src="docs/assets/preview.svg" alt="ShoeHub UI preview with sample data: home, product details (dark) and cart" width="100%">
 
-<sub>A mockup drawn from the app's real layout and its bundled <code>products.json</code>. Not a screenshot.</sub>
+| Home | Product details (dark mode) | Cart |
+|:---:|:---:|:---:|
+| <img src="docs/screenshots/home.png" alt="Home screen with search, brand filter chips and product cards" width="240"> | <img src="docs/screenshots/details-dark.png" alt="Product details page in dark mode with size picker" width="240"> | <img src="docs/screenshots/cart.png" alt="Cart with three items, quantities and total" width="240"> |
+
+<sub>Real screenshots from the running app.</sub>
+
 </div>
 
-<!--
-  REAL SCREENSHOTS: run the app, save screenshots in docs/screenshots/ with these names,
-  then remove this comment's first and last lines.
-
-| Home | Product | Cart | Checkout | Orders | Dark mode |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| <img src="docs/screenshots/home.png" width="160"> | <img src="docs/screenshots/details.png" width="160"> | <img src="docs/screenshots/cart.png" width="160"> | <img src="docs/screenshots/checkout.png" width="160"> | <img src="docs/screenshots/orders.png" width="160"> | <img src="docs/screenshots/dark.png" width="160"> |
-
-  Or a demo GIF:
-<p align="center"><img src="docs/screenshots/demo.gif" width="300"></p>
+<!-- DEMO GIF: save a short recording as docs/screenshots/demo.gif, then uncomment:
+<p align="center"><img src="docs/screenshots/demo.gif" alt="ShoeHub demo: add to cart, checkout, order placed" width="280"></p>
 -->
 
 ## 🧠 How it works
@@ -201,13 +198,13 @@ flutter test
 |---|---|
 | `test/cart_provider_test.dart` (8) | Same product + size merges, different sizes stay separate, subtotal × quantity, delivery fee under/over $100, −1 at quantity 1 removes, Undo puts an item back in place, clear, and save/load after a restart |
 | `test/providers_test.dart` (7) | `Product` JSON round-trip, whole-number prices become doubles, new orders go on top, placed orders don't change with the cart, orders and favorites survive a restart |
-| `test/widget_test.dart` (6) | Error state with Retry, the product list, the brand filter, search, the no-results state, and the **full flow**: add to cart → checkout → see the order |
+| `test/widget_test.dart` (7) | Splash shows the logo and title then opens Home, error state with Retry, the product list, the brand filter, search, the no-results state, and the **full flow**: add to cart → checkout → see the order |
 
 ## 📂 Project structure
 
 ```
 lib/
-├── main.dart                     # MultiProvider + MaterialApp (light/dark themes)
+├── main.dart                     # MultiProvider + MaterialApp, starts on the splash
 ├── data/
 │   └── product_repository.dart   # the only place that knows where products come from
 ├── model/
@@ -221,6 +218,7 @@ lib/
 │   ├── orders_provider.dart      # place order, saved order history
 │   └── theme_provider.dart       # system / light / dark, saved
 ├── pages/
+│   ├── splash_page.dart          # animated logo + title, then Home
 │   ├── home_page.dart            # bottom navigation + cart badge
 │   ├── product_detail_page.dart  # size picker, Hero image, add to cart
 │   ├── favorites_page.dart       # favorite products grid
@@ -238,9 +236,9 @@ lib/
 └── utils/date_format.dart        # "21 Nov 2026, 3:05 PM"
 assets/
 ├── data/products.json            # the catalog
-├── images/                       # product photos
+├── images/                       # product photos + logo
 └── fonts/                        # Lato
-test/                             # 21 unit + widget tests
+test/                             # 22 unit + widget tests
 .github/workflows/                # ci.yml, deploy-web.yml
 ```
 
@@ -248,9 +246,9 @@ test/                             # 21 unit + widget tests
 
 - [x] Typed models, repository layer, saved state
 - [x] Cart quantities, checkout, orders, favorites, sorting, dark mode
-- [x] 21 unit and widget tests
+- [x] 22 unit and widget tests
+- [x] App icons and an animated splash screen
 - [ ] Get CI green (`flutter analyze` + `flutter test`) and turn on GitHub Pages for the live demo
-- [ ] Replace the default Flutter web icons in `web/icons/` with the ShoeHub icon
 - [ ] Store prices as integer cents (floating-point money needs `closeTo` in tests today)
 - [ ] Load products from a REST API or Firebase (only `ProductRepository` changes)
 - [ ] User accounts, with the cart synced across devices
@@ -272,6 +270,13 @@ b30254b  add search feature
 d27132d  Add unit and widget tests
 120880b  Rename app to ShoeHub, add README and GitHub Actions workflows
 1bb90d5  Add ShoeHub app icons for Android and web
+eb61e5a  Update web icons and favicon
+79feef5  Add README banner and UI preview artwork
+ab4fbeb  Rewrite README with visuals, diagrams and test overview
+343a7f9  Add splash screen with logo and app title
+48151fd  Add splash screen
+4dcedfa  Stop tracking Kotlin session files
+d051588  Add app screenshots
 ```
 
 ## 🙏 Acknowledgements
