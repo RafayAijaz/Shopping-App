@@ -80,6 +80,6 @@
       <rect x="244" y="276" width="196" height="38" rx="19" fill="#3A3659" stroke="#D8D2FD" stroke-opacity="0.5"/>
       <text x="342" y="301" text-anchor="middle" fill="#FFFFFF">🌙 Light &amp; dark</text>
     </g>
-    <text class="up d5" x="66" y="360" font-size="15" font-weight="600" fill="#8E8BA8">Android · iOS · Web · Windows · macOS · Linux   |   21 tests · CI on every push</text>
+    <text class="up d5" x="66" y="360" font-size="15" font-weight="600" fill="#8E8BA8">Android · iOS · Web · Windows · macOS · Linux   |   22 tests · CI on every push</text>
   </g>
 </svg>
