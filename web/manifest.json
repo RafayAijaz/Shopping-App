@@ -1,11 +1,11 @@
 {
-    "name": "ecommerce_app",
-    "short_name": "ecommerce_app",
+    "name": "ShoeHub",
+    "short_name": "ShoeHub",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#FECE01",
+    "theme_color": "#FECE01",
+    "description": "ShoeHub - a shoe shopping app built with Flutter.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
